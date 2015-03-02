@@ -53,7 +53,8 @@ bool serReady=false;
 int serLineLength=0;
 
 byte yolo[7][48]={
-   //Y                       //O                       //L
+  //u mad bro?
+     //Y                       //O                       //L                               //O
      {255,255,0,0,0,255,255,0, 0,0,255,255,255,0,0,0,    255,255,0,0,0,0,0,0,              0,0,255,255,255,0,0,0,}, 
      {0,255,255,0,255,255,0,0, 255,255,0,0,0,255,255,0,  255,255,0,0,0,0,0,0,              255,255,0,0,0,255,255,0,},
      {0,0,255,255,255,0,0,0,   255,255,0,0,0,255,255,0,  255,255,0,0,0,0,0,0,              255,255,0,0,0,255,255,0,},
@@ -258,8 +259,8 @@ void serialEvent(){ //hmm
 
 void printMandel(int IterationMax=50){
         int iX,iY;
-        const int iXmax = 384;  //vyska
-        const int iYmax = 384;  //dlzka
+        const int iXmax = 384;  //height
+        const int iYmax = 384;  //length
         /* world ( double) coordinate = parameter plane*/
         double Cx,Cy;
         const double CxMin=-2.0;  //-2.5
@@ -400,7 +401,12 @@ void loop(){
          Serial.println(serLineLength);
          int part=0;
          while(part<serLineLength){
-             printTextLine((char*)serLine.c_str()+part,serLineLength-part<24?(serLineLength-part)%24:24,lineBuffer,48,printTime,3);
+             printTextLine((char*)serLine.c_str()+part, 
+                           serLineLength-part<24 ? (serLineLength-part)%24 : 24,
+                           lineBuffer,
+                           48,
+                           printTime,
+                           3);
              part+=23;
          }
          stepperFree();
